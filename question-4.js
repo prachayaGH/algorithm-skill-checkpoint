@@ -1,5 +1,20 @@
 function sortProductsByPrice(products) {
   // Your code here
+  // วนเข้าตามจำนวนรอบ products.length
+  // วนเข้าไปโดยลดจำนวนรอบจากการเอาค่าที่เคยเทียบไปแล้วออก
+  // ถ้า i > i+1 ให้สลับตำแหน่งกัน ให้ i ไปอยุ่ขวา i+1 ไปอยุ่ซ้าย
+  let n = products.length
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n - 1 - i; j++) {
+      // console.log(products[j]["price"])
+      if(products[j]["price"] > products[j+1]["price"]) {
+        let temp = products[j]
+        products[j] = products[j+1]
+        products[j+1] = temp
+      }
+    }
+  }
+  return products
 }
 
 // Test case
@@ -10,7 +25,6 @@ const products = [
   { name: "Date", price: 1.5 },
 ];
 console.log(sortProductsByPrice(products));
-
 // Output: [
 //   { name: 'Banana', price: 0.8 },
 //   { name: 'Apple', price: 1.2 },
